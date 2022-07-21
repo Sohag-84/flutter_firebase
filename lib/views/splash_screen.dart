@@ -4,8 +4,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/routes/route.dart';
-import 'package:flutter_firebase/views/home_screen.dart';
-import 'package:flutter_firebase/views/signin_screen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

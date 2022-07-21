@@ -97,20 +97,43 @@ class SigninScreen extends StatelessWidget {
               SizedBox(height: 20),
               Row(
                 children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(180),
-                    ),
-                    child: Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.google,
-                        color: Colors.red,
+                  InkWell(
+                    onTap: () async {
+                      await AuthHelper.signInWithGoogle();
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(180),
+                      ),
+                      child: Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.google,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(width: 10),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(180),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.phone_outlined,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],

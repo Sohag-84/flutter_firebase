@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(Duration(seconds: 2), () => chooseScreen());
     return Scaffold(
-      body: Center(child: CircleAvatar()),
+      body: Center(child: Image.asset('images/splash.png')),
     );
   }
 }

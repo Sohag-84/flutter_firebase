@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/controller/auth_cntroller.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../routes/route.dart';
@@ -92,7 +93,26 @@ class SigninScreen extends StatelessWidget {
                     SizedBox(width: 10),
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(180),
+                    ),
+                    child: Center(
+                      child: FaIcon(
+                        FontAwesomeIcons.google,
+                        color: Colors.red,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

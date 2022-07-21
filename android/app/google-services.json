@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "947562140630",
+    "project_id": "flutter-firebase-afran-sarkar",
+    "storage_bucket": "flutter-firebase-afran-sarkar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947562140630:android:79a2e2a9bdaf1dbc904a77",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947562140630-s8j308rv4bdu7qhjvoc53c2bnb6h2l3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_firebase",
+            "certificate_hash": "3e2b29a6b5060248fea5361ba97efc266cd894a3"
+          }
+        },
+        {
+          "client_id": "947562140630-23o9celsiam56j94bojcs4n9ti456bmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7OFUTZu3EpBdF537DDNe749GUbK6lLZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947562140630-23o9celsiam56j94bojcs4n9ti456bmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

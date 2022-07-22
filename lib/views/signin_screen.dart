@@ -118,7 +118,9 @@ class SigninScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(phoneAuthScreen);
+                    },
                     child: Container(
                       height: 40,
                       width: 40,

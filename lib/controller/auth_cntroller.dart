@@ -1,6 +1,7 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_firebase/routes/route.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +9,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthHelper {
   final box = GetStorage();
+  final _otpController = TextEditingController();
 
   Future signUp(email, password) async {
     try {
@@ -61,11 +63,6 @@ class AuthHelper {
     }
   }
 
-  static Future signOut() async {
-    await FirebaseAuth.instance.signOut();
-    //Get.toNamed(signinScreen);
-  }
-
   static Future signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -88,5 +85,76 @@ class AuthHelper {
     } else {
       print("Something is wrong!");
     }
+  }
+
+  Future phoneAuth(number) async {
+    final auth = FirebaseAuth.instance;
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: number,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        final userCredential = await auth.signInWithCredential(credential);
+
+        User? _user = userCredential.user;
+        if (_user!.uid.isNotEmpty) {
+          Get.toNamed(homeScreen);
+        } else {
+          print('failed');
+        }
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        }
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        Get.defaultDialog(
+          content: Column(
+            children: [
+              TextField(
+                controller: _otpController,
+              ),
+              SizedBox(height: 15),
+              InkWell(
+                onTap: () async {
+                  PhoneAuthCredential _phoneAuthCredention =
+                      PhoneAuthProvider.credential(
+                    verificationId: verificationId,
+                    smsCode: _otpController.text,
+                  );
+                  final userCredential =
+                      await auth.signInWithCredential(_phoneAuthCredention);
+
+                  User? _user = userCredential.user;
+                  if (_user!.uid.isNotEmpty) {
+                    Get.toNamed(homeScreen);
+                  } else {
+                    print('failed');
+                  }
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 53,
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
   }
 }
